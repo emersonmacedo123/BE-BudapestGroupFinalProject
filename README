@@ -1,0 +1,15 @@
+### Core idea of the project:
+# Name: Sitters.
+# Concept: It's a website + app to connect parents and/or pet owners with sitters. 
+
+
+### Features: 
+users [sitters and paretns / owners, pets in general also]
+they all have some profile 
+Parents / owners they can search for some sitters available and book a service
+Parents / owners can see based on location where are the sitters available
+sitters can also see where doggo or baby is
+show available sitters based also on different attributes -> to be defined later 
+Profiles have a review system (rating like some stars) 
+Users (parent or sitter) can also switch profile to be a sitter/owner time to time
+login verification to be done -> some authentication (facebook, google, email or something else?)
