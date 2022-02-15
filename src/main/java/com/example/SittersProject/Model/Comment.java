@@ -1,17 +1,14 @@
-package main.java.model.comments;
+package com.example.SittersProject.Model;
 
-import main.java.model.users.User;
-
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 
 public class Comment {
     private String text;
     private Float rating;
     private LocalDateTime postedDate;
-    private User author;
+    private userEntity author;
 
-    public Comment(String text, Float rating, LocalDateTime postedDate, User author) {
+    public Comment(String text, Float rating, LocalDateTime postedDate, userEntity author) {
         this.text = text;
         this.rating = rating;
         this.postedDate = postedDate;
@@ -45,13 +42,14 @@ public class Comment {
         this.postedDate = postedDate;
     }
 
-    public User getAuthor() {
+    public userEntity getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(userEntity author) {
         this.author = author;
     }
+
 
 
 }
