@@ -13,3 +13,72 @@ show available sitters based also on different attributes -> to be defined later
 Profiles have a review system (rating like some stars) 
 Users (parent or sitter) can also switch profile to be a sitter/owner time to time
 login verification to be done -> some authentication (facebook, google, email or something else?)
+
+
+
+
+Our website is meant to connect people who require Sitter services for animals, children...and plants if they have no friends.  At face level, the site will function much like Reddit or Facebook, but will allow owners & parents to post 'Sitter Requests'. Requests will be searchable, so 
+that Sitters can locate requests that will fit their availabilities.  Owners/parents will have the ability to check a verified profile for the sitter. 
+
+In phase one, we'll just allow Clients to post requests for Sitters, after which Sitters can find and apply for those requests, which will need to be accepted by
+the Clients. 
+
+In phase two, Sitters will be able to manage/display their availabilities, and Clients can book their time directly. 
+
+
+
+
+As a Sitter, I want to be able to login to my Sitter profile, and find/manage Sitter Requests from within my profile. 
+
+As a Sitter, I want to be able to do a filtered Search for available Sitter postings in the area/time range/etc.
+
+As a Sitter, I want to be able to leave reviews/ratings on the children/animals I'm sitting. 
+
+As a Sitter, I want to be able to submit my verfication documents for checking. 
+
+As a Sitter, I want to be able to apply for a 'Sitter Request'. 
+
+As a Sitter, I want to be able to rate/review/comment on the child/pet/plants I cared for. 
+
+--------
+
+As a Client, I want to be able to post my Sitter Request, along with info, price and photo. 
+
+As a Client, I want to be able to cancel/delete/modify my Sitter Request.  
+
+As a Client, I want to be able to login to my Client profile, and manage Sitter Requests from within my profile. 
+
+As a Client, I want to be able to rate/review/comment on the service I received. 
+
+--------
+
+As an Admin/God, I want to be able to review reported profiles & complaints. 
+
+As an Admin/God, I want to be able to blacklist/deactivate a profile.  
+
+--------
+
+As a User, I want to be able to see the profiles of counterpart users (eg, Client sees Sitter, Sitter sees Client) 
+
+As a User, I want to be able to report & block another user. 
+
+As a User, I want to be able to delete my profile. 
+
+As a User, I want to be able to switch between my Client & Sitter profiles (if I have both) 
+
+
+
+
+WAY LATER FEATURES: 
+
+As a Client, I want to be able to book time on a Sitter's calendar. 
+
+As a Client, I want to be able to pay my Sitter.
+
+As a Sitter, I want to be able to receive payments from my Client.
+
+As a User, I want to be able to login with SSO (Google, Facebook, etc.) 
+
+As a Client, I want to be able to search Sitters w/ certain qualifications. (Later feature, because we don't know when we will build Sitter Search for Clients) 
+
+As a User, I want to be able to see where my Client/Sitter is located on a map. (ballpark, like AirBnb) 
