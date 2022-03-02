@@ -1,15 +1,13 @@
-package com.example.SittersProject.Model;
+package com.example.SittersProject.User.Model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class userEntity {
+public class User {
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //what is this? - Holden
     private Long id;
 
     @Column(name="firstname")
@@ -21,12 +19,20 @@ public class userEntity {
     @Column(name="emailaddress")
     private String emailAddress;
 
-    public userEntity() {}
+    @Column(name="rating")
+    private Integer rating;
 
-    public userEntity(String firstName, String lastName, String emailAddress) {
+    @Column(name="verified")
+    private boolean verified;
+
+    public User() {}
+
+    public User(String firstName, String lastName, String emailAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+        rating = 0;
+        verified = false;
     }
 
     public Long getId() {
@@ -51,6 +57,30 @@ public class userEntity {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 
     @Override

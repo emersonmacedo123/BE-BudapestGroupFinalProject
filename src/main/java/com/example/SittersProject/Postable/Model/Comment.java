@@ -1,4 +1,6 @@
-package com.example.SittersProject.Model;
+package com.example.SittersProject.Postable.Model;
+
+import com.example.SittersProject.User.Model.User;
 
 import java.time.LocalDateTime;
 
@@ -6,9 +8,9 @@ public class Comment {
     private String text;
     private Float rating;
     private LocalDateTime postedDate;
-    private userEntity author;
+    private User author;
 
-    public Comment(String text, Float rating, LocalDateTime postedDate, userEntity author) {
+    public Comment(String text, Float rating, LocalDateTime postedDate, User author) {
         this.text = text;
         this.rating = rating;
         this.postedDate = postedDate;
@@ -42,11 +44,11 @@ public class Comment {
         this.postedDate = postedDate;
     }
 
-    public userEntity getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(userEntity author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
