@@ -2,7 +2,7 @@ package com.example.SittersProject.User.Model.Service;
 
 
 import com.example.SittersProject.User.Model.User;
-import com.example.SittersProject.User.Repository.userRepository;
+import com.example.SittersProject.User.Model.userRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

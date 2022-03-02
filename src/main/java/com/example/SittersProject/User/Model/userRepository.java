@@ -1,4 +1,4 @@
-package com.example.SittersProject.User.Repository;
+package com.example.SittersProject.User.Model;
 
 import com.example.SittersProject.User.Model.User;
 import com.example.SittersProject.User.Model.Client;
