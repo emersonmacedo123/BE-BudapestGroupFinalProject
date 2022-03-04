@@ -36,10 +36,10 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public Optional<User> getUserById(Model model, @PathVariable Long id){
+    public String getUserById(Model model, @PathVariable Long id){
         Optional<User> user = userService.getUser(id);
         model.addAttribute("user", user);
-        return user;
+        return "user_profile";
     }
 
     @GetMapping("/registration")
@@ -51,8 +51,9 @@ public class UserController {
     @PostMapping("/registration")
     @ResponseBody
     public RedirectView submitRegistrationForm(@ModelAttribute User user){
+        user.setVerified(false);
         userService.addNewUserDB(user);
-        return new RedirectView("index");
+        return new RedirectView("/");
     }
 
 

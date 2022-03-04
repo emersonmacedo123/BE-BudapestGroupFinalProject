@@ -27,9 +27,7 @@ public class SitterRequestController {
         return "sitter_search";
     }
 
-
     //todo getting a 405 (method not allowed), not sure why, waiting on help from discord
-
     @DeleteMapping("/sitter_request/delete/{id}")
     public RedirectView deleteSitterRequest(@PathVariable String id){
         System.out.println("The delete method is being accessed!");
