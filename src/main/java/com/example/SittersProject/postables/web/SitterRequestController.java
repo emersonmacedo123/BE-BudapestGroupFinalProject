@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -23,12 +24,12 @@ public class SitterRequestController {
     public String viewAllRequests(Model model){
         List<SitterRequest> sitterRequestList = sitterRequestService.getAll();
         model.addAttribute("sitterRequests", sitterRequestList);
-        System.out.println("viewAllRequests method triggered");
         return "sitter_search";
     }
 
-    @RequestMapping(value="/sitter_request/delete/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/sitter_request/delete/{id}")
     public String deleteSitterRequest(@PathVariable String id){
+        System.out.println("The delete method is being accessed!");
         Long requestId = Long.parseLong(id);
         sitterRequestService.removeSitterRequestDB(requestId);
         return "sitter_search";
@@ -42,8 +43,9 @@ public class SitterRequestController {
 
     @PostMapping("/new_request")
     @ResponseBody
-    public void submitSitterRequestForm(@ModelAttribute SitterRequest sitterRequest){
+    public RedirectView submitSitterRequestForm(@ModelAttribute SitterRequest sitterRequest){
         sitterRequestService.addSitterRequestDB(sitterRequest);
+        return new RedirectView("sitter_search");
     }
 
     @GetMapping("/api/sitter_requests")
