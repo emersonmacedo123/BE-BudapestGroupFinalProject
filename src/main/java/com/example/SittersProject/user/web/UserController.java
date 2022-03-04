@@ -51,8 +51,9 @@ public class UserController {
     @PostMapping("/registration")
     @ResponseBody
     public RedirectView submitRegistrationForm(@ModelAttribute User user){
+        user.setVerified(false);
         userService.addNewUserDB(user);
-        return new RedirectView("index");
+        return new RedirectView("/");
     }
 
 
