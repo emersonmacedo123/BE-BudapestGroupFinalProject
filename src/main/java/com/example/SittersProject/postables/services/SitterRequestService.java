@@ -21,4 +21,8 @@ public class SitterRequestService {
         repository.save(request);
     }
 
+    public void removeSitterRequestDB(Long id){
+        repository.deleteById(id);
+    }
+
 }

@@ -6,9 +6,8 @@ import com.example.SittersProject.postables.services.SitterRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -21,22 +20,32 @@ public class SitterRequestController {
         this.sitterRequestService = sitterRequestService;
     }
 
-    @GetMapping("/all_requests")
+    @GetMapping("/sitter_search")
     public String viewAllRequests(Model model){
         List<SitterRequest> sitterRequestList = sitterRequestService.getAll();
         model.addAttribute("sitterRequests", sitterRequestList);
-        System.out.println("viewAllRequests method triggered");
+        return "sitter_search";
+    }
+
+    @DeleteMapping("/sitter_request/delete/{id}")
+    public String deleteSitterRequest(@PathVariable String id){
+        System.out.println("The delete method is being accessed!");
+        Long requestId = Long.parseLong(id);
+        sitterRequestService.removeSitterRequestDB(requestId);
         return "sitter_search";
     }
 
     @GetMapping("/new_request")
-    public String newRequestForm(){
+    public String newRequestForm(Model model){
+        model.addAttribute("sitter_request", new SitterRequest());
         return "sitter_request_form";
     }
 
     @PostMapping("/new_request")
-    public void saveSitterRequest(SitterRequest request){
-        sitterRequestService.addSitterRequestDB(request);
+    @ResponseBody
+    public RedirectView submitSitterRequestForm(@ModelAttribute SitterRequest sitterRequest){
+        sitterRequestService.addSitterRequestDB(sitterRequest);
+        return new RedirectView("sitter_search");
     }
 
     @GetMapping("/api/sitter_requests")
