@@ -27,13 +27,24 @@ public class SitterRequestController {
         return "sitter_search";
     }
 
-    //todo delete not workin
+
+    //todo getting a 405 (method not allowed), not sure why, waiting on help from discord
+
     @DeleteMapping("/sitter_request/delete/{id}")
-    public String deleteSitterRequest(@PathVariable String id){
+    public RedirectView deleteSitterRequest(@PathVariable String id){
         System.out.println("The delete method is being accessed!");
         Long requestId = Long.parseLong(id);
         sitterRequestService.removeSitterRequestDB(requestId);
-        return "sitter_search";
+        return new RedirectView("sitter_search");
+    }
+
+    //todo create an edit form/template/etc. --- best not to use this method right now
+    @PutMapping("/sitter_request/edit/{id}")
+    public RedirectView editSitterRequest(@PathVariable String id){
+        System.out.println("The edit method is being accessed!");
+        Long requestId = Long.parseLong(id);
+        sitterRequestService.updateSitterRequestDB(requestId);
+        return new RedirectView("sitter_search");
     }
 
     @GetMapping("/new_request")
