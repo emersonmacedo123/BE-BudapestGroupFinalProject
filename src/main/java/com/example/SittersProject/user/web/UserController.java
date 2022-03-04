@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +36,19 @@ public class UserController {
         Optional<User> user = userService.getUser(id);
         model.addAttribute("user", user);
         return user;
+    }
+
+    @GetMapping("/registration")
+    public String newRegistration(Model model){
+        model.addAttribute("user", new User());
+        return "login-registration";
+    }
+
+    @PostMapping("/registration")
+    @ResponseBody
+    public RedirectView submitRegistrationForm(@ModelAttribute User user){
+        userService.addNewUserDB(user);
+        return new RedirectView("index");
     }
 
     @GetMapping("/api/users")

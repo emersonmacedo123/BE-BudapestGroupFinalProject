@@ -27,6 +27,7 @@ public class SitterRequestController {
         return "sitter_search";
     }
 
+    //todo delete not workin
     @DeleteMapping("/sitter_request/delete/{id}")
     public String deleteSitterRequest(@PathVariable String id){
         System.out.println("The delete method is being accessed!");
