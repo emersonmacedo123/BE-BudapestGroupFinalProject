@@ -25,6 +25,8 @@ public class User {
     @Column(name="verified")
     private boolean verified;
 
+
+
     public User() {}
 
     public User(String firstName, String lastName, String emailAddress) {
