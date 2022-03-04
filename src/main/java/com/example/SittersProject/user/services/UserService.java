@@ -1,6 +1,5 @@
 package com.example.SittersProject.user.services;
 
-
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
