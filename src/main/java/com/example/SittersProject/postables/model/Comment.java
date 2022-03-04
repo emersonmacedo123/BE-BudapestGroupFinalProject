@@ -1,6 +1,6 @@
-package com.example.SittersProject.Postable.Model;
+package com.example.SittersProject.postables.model;
 
-import com.example.SittersProject.User.Model.User;
+import com.example.SittersProject.user.model.User;
 
 import java.time.LocalDateTime;
 
