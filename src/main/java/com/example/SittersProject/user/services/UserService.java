@@ -23,7 +23,7 @@ public class UserService {
     }
 
 
-    public void addNewUser(User user){
+    public void addNewUserDB(User user){
         repository.save(user);
     }
 

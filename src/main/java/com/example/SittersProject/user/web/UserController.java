@@ -27,7 +27,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/")
     public String getUsers(Model model){
         List<User> users = userService.getAll();
         model.addAttribute("users", users);
@@ -55,12 +55,6 @@ public class UserController {
         return new RedirectView("index");
     }
 
-
-    @PostMapping("/user/new_user")
-    public RedirectView addNewUser(Model model, @ModelAttribute User user){
-        userService.addNewUser(user);
-        return new RedirectView("index");
-    }
 
 
 //--------------API--------------\\
