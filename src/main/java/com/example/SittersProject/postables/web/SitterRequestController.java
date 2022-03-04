@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,13 +31,16 @@ public class SitterRequestController {
     }
 
     @GetMapping("/new_request")
-    public String newRequestForm(){
+    public String newRequestForm(Model model){
+        model.addAttribute("sitter_request", new SitterRequest());
         return "sitter_request_form";
     }
 
     @PostMapping("/new_request")
-    public void saveSitterRequest(SitterRequest request){
-        sitterRequestService.addSitterRequestDB(request);
+    @ResponseBody
+    public String submitSitterRequestForm(@ModelAttribute SitterRequest sitterRequest){
+        sitterRequest.getId();
+        return id.toString();
     }
 
     @GetMapping("/api/sitter_requests")
