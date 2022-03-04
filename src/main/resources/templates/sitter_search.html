@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<h2>List of Sitter Requests</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>CustomerId</th>
+        <th>Request</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="request : ${sitterRequests}">
+        <td th:text="${request.id}"></td>
+        <td th:text="${request.requesterId}"></td>
+        <td th:text="${request.message}"></td>
+<!--        <td><a th:href="@{/edit/{id}(id=${employee.id})}">Edit</a></td>-->
+<!--        <td><a th:href="@{/delete/{id}(id=${employee.id})}">Delete</a></td>-->
+    </tr>
+    </tbody>
+</table>
+<p></p>
+</body>
+</html>

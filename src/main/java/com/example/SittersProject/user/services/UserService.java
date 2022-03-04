@@ -1,8 +1,7 @@
-package com.example.SittersProject.User.Model.Service;
+package com.example.SittersProject.user.services;
 
-
-import com.example.SittersProject.User.Model.User;
-import com.example.SittersProject.User.Model.UserRepository;
+import com.example.SittersProject.user.model.User;
+import com.example.SittersProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +21,5 @@ public class UserService {
     public Optional<User> getUser(Long id) {
         return repository.findById(id);
     }
+
 }

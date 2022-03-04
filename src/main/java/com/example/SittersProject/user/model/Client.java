@@ -1,6 +1,4 @@
-package com.example.SittersProject.User.Model;
-
-import com.example.SittersProject.User.Model.User;
+package com.example.SittersProject.user.model;
 
 public class Client extends User {
     public Client(String firstName, String lastName, String emailAddress) {

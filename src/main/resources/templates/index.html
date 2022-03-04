@@ -15,13 +15,15 @@ This is the beginning of the Sitters websiiiiiiiiiiite (provisory name).
         <th>First Name</th>
         <th>Last Name</th>
         <th>email</th>
+        <p></p>
     </tr>
     </thead>
+    <p></p>
     <tbody>
     <tr th:each="user : ${users}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.firstName}"></td>
-        <td th:text="${user}"></td>
+        <td th:text="${user.lastName}"></td>
         <td th:text="${user.emailAddress}"></td>
 <!--        <td><a th:href="@{/edit/{id}(id=${employee.id})}">Edit</a></td>-->
 <!--        <td><a th:href="@{/delete/{id}(id=${employee.id})}">Delete</a></td>-->

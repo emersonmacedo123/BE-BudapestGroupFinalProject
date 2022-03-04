@@ -1,4 +1,4 @@
-package com.example.SittersProject.User.Model;
+package com.example.SittersProject.user.model;
 
 
 public class Sitter extends User {

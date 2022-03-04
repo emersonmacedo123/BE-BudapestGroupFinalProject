@@ -1,4 +1,4 @@
-package com.example.SittersProject.User.Model;
+package com.example.SittersProject.user.model;
 
 import javax.persistence.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //what is this? - Holden
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="firstname")
@@ -19,7 +19,7 @@ public class User {
     @Column(name="emailaddress")
     private String emailAddress;
 
-    @Column(name="rating")
+    @Column(name="averagerating")
     private Integer rating;
 
     @Column(name="verified")

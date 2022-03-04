@@ -1,18 +1,17 @@
-package com.example.SittersProject.User.Controller;
+package com.example.SittersProject.user.web;
 
-import com.example.SittersProject.User.Model.User;
-import com.example.SittersProject.User.Model.Service.UserService;
+import com.example.SittersProject.user.model.User;
+import com.example.SittersProject.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("users")
 public class UserController {
     public final UserService userService;
 
@@ -22,10 +21,11 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public List<User> getUsers(Model model){
-        model.addAttribute("users", userService.getAll());
+    public String getUsers(Model model){
         List<User> users = userService.getAll();
-        return users;
+        model.addAttribute("users", users);
+        System.out.println(users);
+        return "index";
     }
 
     @GetMapping("/id")
@@ -34,4 +34,12 @@ public class UserController {
         model.addAttribute("user", user);
         return user;
     }
+
+    @GetMapping("/api/users")
+    @ResponseBody
+    public List<User> requestUsers(){
+
+        return userService.getAll();
+    }
+
 }
