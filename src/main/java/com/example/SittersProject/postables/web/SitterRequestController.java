@@ -38,9 +38,8 @@ public class SitterRequestController {
 
     @PostMapping("/new_request")
     @ResponseBody
-    public String submitSitterRequestForm(@ModelAttribute SitterRequest sitterRequest){
-        sitterRequest.getId();
-        return id.toString();
+    public void submitSitterRequestForm(@ModelAttribute SitterRequest sitterRequest){
+        sitterRequestService.addSitterRequestDB(sitterRequest);
     }
 
     @GetMapping("/api/sitter_requests")
