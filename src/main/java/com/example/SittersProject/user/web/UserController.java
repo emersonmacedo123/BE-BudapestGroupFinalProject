@@ -5,8 +5,8 @@ import com.example.SittersProject.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/users")
     public String getUsers(Model model){
         List<User> users = userService.getAll();
         model.addAttribute("users", users);
@@ -28,18 +28,33 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/id")
-    public Optional<User> getUserById(Model model, Long id){
+    @GetMapping("/user/{id}")
+    public Optional<User> getUserById(Model model, @PathVariable Long id){
         Optional<User> user = userService.getUser(id);
         model.addAttribute("user", user);
         return user;
     }
 
+    @PostMapping("/user/new_user")
+    public RedirectView addNewUser(Model model, @ModelAttribute User user){
+        userService.addNewUser(user);
+        return new RedirectView("index");
+    }
+
+
+//--------------API--------------\\
+
     @GetMapping("/api/users")
     @ResponseBody
     public List<User> requestUsers(){
-
         return userService.getAll();
+    }
+
+    @GetMapping("/api/user/{id}")
+    @ResponseBody
+    public Optional<User> requestUserById(@PathVariable Long id){
+        Optional<User> user = userService.getUser(id);
+        return user;
     }
 
 }

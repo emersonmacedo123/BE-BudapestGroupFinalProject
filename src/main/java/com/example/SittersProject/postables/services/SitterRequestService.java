@@ -25,4 +25,8 @@ public class SitterRequestService {
         repository.deleteById(id);
     }
 
+    public void updateSitterRequestDB(Long id){
+
+    }
+
 }
