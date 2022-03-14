@@ -1,5 +1,6 @@
 package com.example.SittersProject;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 
 @Component
+@RequiredArgsConstructor
 public class PetHelpUserDetails implements UserDetails {
 
     private User user;
