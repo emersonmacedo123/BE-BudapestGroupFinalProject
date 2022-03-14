@@ -23,6 +23,6 @@ public class PetHelpUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("User Not Found");
         }
 
-        return null;
+        return new PetHelpUserDetails(user);
     }
 }
