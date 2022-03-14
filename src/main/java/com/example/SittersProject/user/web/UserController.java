@@ -49,9 +49,9 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    @ResponseBody
+    @ResponseBody //todo how is response body working
     public RedirectView submitRegistrationForm(@ModelAttribute User user){
-        user.setVerified(false);
+        user.setVerified(false); //todo can remove?
         userService.addNewUserDB(user);
         return new RedirectView("/");
     }

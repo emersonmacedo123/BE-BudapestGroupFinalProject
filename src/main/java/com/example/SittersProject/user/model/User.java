@@ -19,13 +19,44 @@ public class User {
     @Column(name="emailaddress")
     private String emailAddress;
 
+    @Column(name="username")
+    private String username;
+
+    @Column(name="password")
+    private String password;
+
     @Column(name="averagerating")
     private Integer rating;
 
     @Column(name="verified")
     private boolean verified;
 
+    @Column(name="role")
+    private String role;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public User() {}
 
