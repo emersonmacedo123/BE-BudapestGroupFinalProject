@@ -19,6 +19,12 @@ public class User {
     @Column(name="emailaddress")
     private String emailAddress;
 
+    @Column(name="username")
+    private String username;
+
+    @Column(name="password")
+    private String password;
+
     @Column(name="averagerating")
     private Integer rating;
 
