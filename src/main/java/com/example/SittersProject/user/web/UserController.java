@@ -1,6 +1,7 @@
 package com.example.SittersProject.user.web;
 
 import com.example.SittersProject.user.model.User;
+import com.example.SittersProject.user.services.EmailExistsException;
 import com.example.SittersProject.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,9 +51,9 @@ public class UserController {
 
     @PostMapping("/registration")
     @ResponseBody //todo how is response body working
-    public RedirectView submitRegistrationForm(@ModelAttribute User user){
+    public RedirectView submitRegistrationForm(@ModelAttribute User user) throws EmailExistsException {
         user.setVerified(false); //todo can remove?
-        userService.addNewUserDB(user);
+        userService.registerNewUser(user);
         return new RedirectView("/");
     }
 
