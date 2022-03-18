@@ -41,7 +41,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/sitter_search")
                 .hasAuthority("USER")
                 .antMatchers("/api/users")
-                .hasAuthority("ADMIN")
+                .hasAnyAuthority("USER","ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
