@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     public final UserService userService;
 
