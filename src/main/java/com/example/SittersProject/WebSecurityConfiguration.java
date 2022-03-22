@@ -50,5 +50,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .httpBasic();
+        //create an endpoint that accepts login and password as JSON
+        //never trust anything that happens outside of your backend
+        //login endpoint with spring, need to make one
     }
 }

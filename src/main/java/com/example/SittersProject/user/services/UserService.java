@@ -22,7 +22,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     private final UserRepository userRepository;
 
-    //autowiring this creates a cyclic dependency on Web Config 
     private PasswordEncoder passwordEncoder;
 
     @Override
