@@ -39,11 +39,13 @@ public class UserController {
         return new ResponseEntity(users, HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
-    public String getUserById(Model model, @PathVariable Long id){
+    @GetMapping(value="/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity getUserById(@PathVariable Long id){
         Optional<User> user = userService.getUser(id);
-        model.addAttribute("user", user);
-        return "user_profile";
+        if (user.isPresent()) {
+            return new ResponseEntity(user.get(), HttpStatus.OK);
+        } return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/registration")
