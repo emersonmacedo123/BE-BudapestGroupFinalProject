@@ -3,7 +3,9 @@ package com.example.SittersProject.user.web;
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.services.EmailExistsException;
 import com.example.SittersProject.user.services.UserService;
+import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -29,12 +31,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String getUsers(Model model){
+    @GetMapping(value="/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<User> getUsers(){
         List<User> users = userService.getAll();
-        model.addAttribute("users", users);
-        System.out.println(users);
-        return "index";
+        return ;
     }
 
     @GetMapping("/user/{id}")
