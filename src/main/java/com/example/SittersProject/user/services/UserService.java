@@ -5,6 +5,7 @@ import com.example.SittersProject.user.repository.PetHelpUserDetails;
 import com.example.SittersProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,26 +28,33 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User Not Found");
-        }
+        } return new PetHelpUserDetails(user);
+    }
 
-        return new PetHelpUserDetails(user);
+    public UserDetails loadUserByEmailAddress(String email) throws EmailNotFoundException {
+        User user = userRepository.findByEmailAddress(email);
+        if (user == null) {
+           throw new EmailNotFoundException("User Not Found");
+        } return new PetHelpUserDetails(user);
     }
 
     public boolean emailExists(String emailAddress) {
         return userRepository.findByEmailAddress(emailAddress) != null;
     }
 
-    public User registerNewUser(User user) throws EmailExistsException {
+    public void registerNewUser(User user) throws EmailExistsException {
         if (emailExists(user.getEmailAddress())) {
             throw new EmailExistsException("This email already exists.");
         }
+        userRepository.save(user);
+    }
 
-
-        return userRepository.save(user);
+    public boolean userExists(String email) throws EmailNotFoundException {
+        Optional<UserDetails> user = Optional.ofNullable(loadUserByEmailAddress(email));
+        return user.isPresent();
     }
 
     public List<User> getAllUsers(){

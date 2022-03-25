@@ -2,11 +2,13 @@ package com.example.SittersProject.user.web;
 
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.services.EmailExistsException;
+import com.example.SittersProject.user.services.EmailNotFoundException;
 import com.example.SittersProject.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -32,56 +34,53 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value="/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity getUsers(){
+    public ResponseEntity getUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity(users, HttpStatus.OK);
     }
 
-    @GetMapping(value="/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity getUserById(@PathVariable Long id){
+    public ResponseEntity getUserById(@PathVariable Long id) {
         Optional<User> user = userService.getUser(id);
         if (user.isPresent()) {
             return new ResponseEntity(user.get(), HttpStatus.OK);
-        } return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
 
     //todo scheduled to delete, no reason to render a template from backend
     @GetMapping("/registration")
-    public String newRegistration(Model model){
+    public String newRegistration(Model model) {
         model.addAttribute("user", new User());
         return "login-registration";
     }
 
-    @PostMapping(value="/registration")
+    @PostMapping(value = "/registration")
     @ResponseBody //could be worth creating some DTO here?
     public HttpStatus submitRegistrationForm(@RequestBody User user) throws EmailExistsException {
         try {
             userService.registerNewUser(user);
-            return HttpStatus.OK
+            return HttpStatus.OK;
         } catch (EmailExistsException e) {
             return HttpStatus.CONFLICT;
         }
     }
 
-
-
-//--------------API--------------\\
-
-
-    @GetMapping("/api/users")
+    @PostMapping(value="/login")
     @ResponseBody
-    public List<User> requestUsers(){
-        return userService.getAllUsers();
+    public HttpStatus acceptUserLoginDetails(@RequestBody String email, @RequestBody String password) throws EmailNotFoundException {
+        if (userService.userExists(email)) {
+            UserDetails userDetails = userService.loadUserByEmailAddress(email);
+            if (userDetails.getPassword() == password) {
+                return HttpStatus.ACCEPTED;
+            } return HttpStatus.FORBIDDEN;
+        } return HttpStatus.NOT_FOUND;
     }
 
-    @GetMapping("/api/user/{id}")
-    @ResponseBody
-    public Optional<User> requestUserById(@PathVariable Long id){
-        Optional<User> user = userService.getUser(id);
-        return user;
-    }
 
 }
+
+
