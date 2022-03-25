@@ -47,14 +47,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/sitter_search")
                 .hasAuthority("USER")
-                .antMatchers("/api/users")
-                .hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/users")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/registration")
-                .permitAll()
                 .and()
                 .httpBasic();
     }
