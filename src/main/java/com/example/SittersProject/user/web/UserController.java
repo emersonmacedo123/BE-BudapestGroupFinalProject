@@ -48,18 +48,22 @@ public class UserController {
         } return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
 
+    //todo scheduled to delete, no reason to render a template from backend
     @GetMapping("/registration")
     public String newRegistration(Model model){
         model.addAttribute("user", new User());
         return "login-registration";
     }
 
-    @PostMapping("/registration")
-    @ResponseBody //todo how is response body working
-    public RedirectView submitRegistrationForm(@ModelAttribute User user) throws EmailExistsException {
-        user.setVerified(false); //todo can remove?
-        userService.registerNewUser(user);
-        return new RedirectView("/");
+    @PostMapping(value="/registration")
+    @ResponseBody //could be worth creating some DTO here?
+    public HttpStatus submitRegistrationForm(@RequestBody User user) throws EmailExistsException {
+        try {
+            userService.registerNewUser(user);
+            return HttpStatus.OK
+        } catch (EmailExistsException e) {
+            return HttpStatus.CONFLICT;
+        }
     }
 
 
