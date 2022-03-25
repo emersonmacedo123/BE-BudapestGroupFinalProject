@@ -2,8 +2,13 @@ package com.example.SittersProject.user.web;
 
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.services.EmailExistsException;
+import com.example.SittersProject.user.services.EmailNotFoundException;
 import com.example.SittersProject.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -29,51 +34,53 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String getUsers(Model model){
-        List<User> users = userService.getAll();
-        model.addAttribute("users", users);
-        System.out.println(users);
-        return "index";
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity getUsers() {
+        List<User> users = userService.getAllUsers();
+        return new ResponseEntity(users, HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
-    public String getUserById(Model model, @PathVariable Long id){
+    @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity getUserById(@PathVariable Long id) {
         Optional<User> user = userService.getUser(id);
-        model.addAttribute("user", user);
-        return "user_profile";
+        if (user.isPresent()) {
+            return new ResponseEntity(user.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
 
+    //todo scheduled to delete, no reason to render a template from backend
     @GetMapping("/registration")
-    public String newRegistration(Model model){
+    public String newRegistration(Model model) {
         model.addAttribute("user", new User());
         return "login-registration";
     }
 
-    @PostMapping("/registration")
-    @ResponseBody //todo how is response body working
-    public RedirectView submitRegistrationForm(@ModelAttribute User user) throws EmailExistsException {
-        user.setVerified(false); //todo can remove?
-        userService.registerNewUser(user);
-        return new RedirectView("/");
+    @PostMapping(value = "/registration")
+    @ResponseBody //could be worth creating some DTO here?
+    public HttpStatus submitRegistrationForm(@RequestBody User user) throws EmailExistsException {
+        try {
+            userService.registerNewUser(user);
+            return HttpStatus.OK;
+        } catch (EmailExistsException e) {
+            return HttpStatus.CONFLICT;
+        }
     }
 
-
-
-//--------------API--------------\\
-
-
-    @GetMapping("/api/users")
+    @PostMapping(value="/login")
     @ResponseBody
-    public List<User> requestUsers(){
-        return userService.getAll();
+    public HttpStatus acceptUserLoginDetails(@RequestBody String email, @RequestBody String password) throws EmailNotFoundException {
+        if (userService.userExists(email)) {
+            UserDetails userDetails = userService.loadUserByEmailAddress(email);
+            if (userDetails.getPassword() == password) {
+                return HttpStatus.ACCEPTED;
+            } return HttpStatus.FORBIDDEN;
+        } return HttpStatus.NOT_FOUND;
     }
 
-    @GetMapping("/api/user/{id}")
-    @ResponseBody
-    public Optional<User> requestUserById(@PathVariable Long id){
-        Optional<User> user = userService.getUser(id);
-        return user;
-    }
 
 }
+
+
