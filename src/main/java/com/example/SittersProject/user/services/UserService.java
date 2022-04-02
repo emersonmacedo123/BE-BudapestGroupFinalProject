@@ -1,5 +1,6 @@
 package com.example.SittersProject.user.services;
 
+import com.example.SittersProject.postables.model.SitterRequest;
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.repository.PetHelpUserDetails;
 import com.example.SittersProject.user.repository.UserRepository;
@@ -20,7 +21,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
-    @Autowired
+    @Autowired //what's happening here
     private final UserRepository userRepository;
 
     //autowiring this creates a cyclic dependency on Web Config 
@@ -46,7 +47,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void registerNewUser(User user) throws EmailExistsException {
-        if (emailExists(user.getEmailAddress())) {
+        if (emailExists(user.getEmailAddress())) {//should just look for null as a value, then only need one search
             throw new EmailExistsException("This email already exists.");
         }
         userRepository.save(user);
@@ -64,7 +65,6 @@ public class UserService implements UserDetailsService {
     public Optional<User> getUser(Long id) {
         return userRepository.findById(id);
     }
-
 
 
 }

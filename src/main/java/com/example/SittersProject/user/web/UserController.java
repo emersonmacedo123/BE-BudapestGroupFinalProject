@@ -1,5 +1,6 @@
 package com.example.SittersProject.user.web;
 
+import com.example.SittersProject.postables.model.SitterRequest;
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.services.EmailExistsException;
 import com.example.SittersProject.user.services.EmailNotFoundException;
@@ -13,13 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -60,7 +59,7 @@ public class UserController {
 
     @PostMapping(value = "/registration")
     @ResponseBody //could be worth creating some DTO here?
-    public HttpStatus submitRegistrationForm(@RequestBody User user) throws EmailExistsException {
+    public HttpStatus submitRegistrationForm(@RequestBody User user){
         try {
             userService.registerNewUser(user);
             return HttpStatus.OK;
@@ -69,7 +68,7 @@ public class UserController {
         }
     }
 
-    @PostMapping(value="/login")
+   /* @PostMapping(value="/login")  method not needed because default formLogin() method allows for posting to default /login endpoint
     @ResponseBody
     public HttpStatus acceptUserLoginDetails(@RequestBody String email, @RequestBody String password) throws EmailNotFoundException {
         if (userService.userExists(email)) {
@@ -78,7 +77,7 @@ public class UserController {
                 return HttpStatus.ACCEPTED;
             } return HttpStatus.FORBIDDEN;
         } return HttpStatus.NOT_FOUND;
-    }
+    }*/
 
 
 }
