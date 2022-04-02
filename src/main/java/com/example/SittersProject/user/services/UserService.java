@@ -1,12 +1,10 @@
 package com.example.SittersProject.user.services;
 
-import com.example.SittersProject.postables.model.SitterRequest;
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.repository.PetHelpUserDetails;
 import com.example.SittersProject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

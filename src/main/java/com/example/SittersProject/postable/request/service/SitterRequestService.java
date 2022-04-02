@@ -1,7 +1,7 @@
-package com.example.SittersProject.postables.services;
+package com.example.SittersProject.postable.request.service;
 
-import com.example.SittersProject.postables.model.SitterRequest;
-import com.example.SittersProject.postables.respository.SitterRequestRepository;
+import com.example.SittersProject.postable.request.model.SitterRequest;
+import com.example.SittersProject.postable.request.respository.SitterRequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,6 @@ public class SitterRequestService {
     }
 
     public void updateSitterRequestDB(Long id){
-
     }
 
 }
