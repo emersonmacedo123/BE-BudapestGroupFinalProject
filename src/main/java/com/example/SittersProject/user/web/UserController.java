@@ -1,15 +1,12 @@
 package com.example.SittersProject.user.web;
 
-import com.example.SittersProject.postables.model.SitterRequest;
 import com.example.SittersProject.user.model.User;
 import com.example.SittersProject.user.services.EmailExistsException;
-import com.example.SittersProject.user.services.EmailNotFoundException;
 import com.example.SittersProject.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -50,13 +47,6 @@ public class UserController {
         return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
 
-    //todo scheduled to delete, no reason to render a template from backend
-    @GetMapping("/registration")
-    public String newRegistration(Model model) {
-        model.addAttribute("user", new User());
-        return "login-registration";
-    }
-
     @PostMapping(value = "/registration")
     @ResponseBody //could be worth creating some DTO here?
     public HttpStatus submitRegistrationForm(@RequestBody User user){
@@ -67,19 +57,6 @@ public class UserController {
             return HttpStatus.CONFLICT;
         }
     }
-
-   /* @PostMapping(value="/login")  method not needed because default formLogin() method allows for posting to default /login endpoint
-    @ResponseBody
-    public HttpStatus acceptUserLoginDetails(@RequestBody String email, @RequestBody String password) throws EmailNotFoundException {
-        if (userService.userExists(email)) {
-            UserDetails userDetails = userService.loadUserByEmailAddress(email);
-            if (userDetails.getPassword() == password) {
-                return HttpStatus.ACCEPTED;
-            } return HttpStatus.FORBIDDEN;
-        } return HttpStatus.NOT_FOUND;
-    }*/
-
-
 }
 
 
