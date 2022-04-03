@@ -1,4 +1,4 @@
-package com.example.SittersProject.postables.model;
+package com.example.SittersProject.postable.request.model;
 
 import javax.persistence.*;
 

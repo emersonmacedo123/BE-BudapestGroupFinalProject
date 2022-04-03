@@ -1,8 +1,8 @@
-package com.example.SittersProject.postables.web;
+package com.example.SittersProject.postable.request.web;
 
 
-import com.example.SittersProject.postables.model.SitterRequest;
-import com.example.SittersProject.postables.services.SitterRequestService;
+import com.example.SittersProject.postable.request.model.SitterRequest;
+import com.example.SittersProject.postable.request.service.SitterRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;

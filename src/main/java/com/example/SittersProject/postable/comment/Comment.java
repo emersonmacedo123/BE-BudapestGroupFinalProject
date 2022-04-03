@@ -1,7 +1,8 @@
-package com.example.SittersProject.postables.model;
+package com.example.SittersProject.postable.comment;
 
 import com.example.SittersProject.user.model.User;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 public class Comment {

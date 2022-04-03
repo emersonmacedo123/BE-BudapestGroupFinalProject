@@ -55,7 +55,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/registration")
                 .and()
                 .httpBasic();
     }
