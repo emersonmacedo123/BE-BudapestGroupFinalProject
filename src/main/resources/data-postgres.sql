@@ -10,13 +10,5 @@ INSERT INTO users(firstName, lastName, emailaddress, username, password, average
 VALUES ('I', 'should', 'bemorecreativewithnames@gmail.com', 'namename', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'USER');
 
 
-INSERT INTO sitter_requests(requesterid, message)
-VALUES (1234, 'HI, LOOKING FOR SOMEONE TO WATCH MY PET ROCK');
-INSERT INTO sitter_requests(requesterid, message)
-VALUES (5678, 'LOOKING FOR SOMEONE TO WATCH MY CRAZY CHILD');
-INSERT INTO sitter_requests(requesterid, message)
-VALUES (9101112, 'IS ANYONE AVAILABLE TO PLANT-SIT FOR ME?');
-
-
-
-
+INSERT INTO sitter_requests(requesterid, district, address, type, date, start_time, num_hours, fee, title, message)
+VALUES (1234, 6, '79 Andrassy Ut.', 'pet', CURRENT_DATE, '08:00:00', 8, 7.99, 'Need RockSitter', 'HI, LOOKING FOR SOMEONE TO WATCH MY PET ROCK');
