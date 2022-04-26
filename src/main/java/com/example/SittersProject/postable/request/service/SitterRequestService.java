@@ -2,8 +2,10 @@ package com.example.SittersProject.postable.request.service;
 
 import com.example.SittersProject.postable.request.model.SitterRequest;
 import com.example.SittersProject.postable.request.respository.SitterRequestRepository;
+import com.example.SittersProject.user.model.Sitter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -26,6 +28,11 @@ public class SitterRequestService {
     }
 
     public void updateSitterRequestDB(Long id){
+    }
+
+    public SitterRequest unpackHttpRequestToSitterRequest(RequestBody request) {
+        request.
+
     }
 
 }

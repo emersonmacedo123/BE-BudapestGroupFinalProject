@@ -4,6 +4,8 @@ package com.example.SittersProject.postable.request.web;
 import com.example.SittersProject.postable.request.model.SitterRequest;
 import com.example.SittersProject.postable.request.service.SitterRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,47 +23,31 @@ public class SitterRequestController {
     }
 
     @GetMapping("/sitter_search")
-    public String viewAllRequests(Model model){
-        List<SitterRequest> sitterRequestList = sitterRequestService.getAll();
-        model.addAttribute("sitterRequests", sitterRequestList);
-        return "sitter_search";
+    public List<SitterRequest> viewAllRequests() {
+        return sitterRequestService.getAll();
     }
 
     //todo getting a 405 (method not allowed), not sure why, waiting on help from discord
     @DeleteMapping("/sitter_request/delete/{id}")
-    public RedirectView deleteSitterRequest(@PathVariable String id){
-        System.out.println("The delete method is being accessed!");
+    public HttpStatus deleteSitterRequest(@PathVariable String id) {
         Long requestId = Long.parseLong(id);
         sitterRequestService.removeSitterRequestDB(requestId);
-        return new RedirectView("sitter_search");
+        return HttpStatus.OK;
     }
 
-    //todo create an edit form/template/etc. --- best not to use this method right now
     @PutMapping("/sitter_request/edit/{id}")
-    public RedirectView editSitterRequest(@PathVariable String id){
-        System.out.println("The edit method is being accessed!");
+    public HttpStatus editSitterRequest(@PathVariable String id) {
         Long requestId = Long.parseLong(id);
         sitterRequestService.updateSitterRequestDB(requestId);
-        return new RedirectView("sitter_search");
-    }
-
-    @GetMapping("/new_request")
-    public String newRequestForm(Model model){
-        model.addAttribute("sitter_request", new SitterRequest());
-        return "sitter_request_form";
+        return HttpStatus.OK;
     }
 
     @PostMapping("/new_request")
     @ResponseBody
-    public RedirectView submitSitterRequestForm(@ModelAttribute SitterRequest sitterRequest){
+    public HttpStatus submitSitterRequestForm(RequestBody newRequest) {
+        SitterRequest sitterRequest = sitterRequestService
+                .unpackHttpRequestToSitterRequest(newRequest);
         sitterRequestService.addSitterRequestDB(sitterRequest);
-        return new RedirectView("sitter_search");
+        return HttpStatus.OK;
     }
-
-    @GetMapping("/api/sitter_requests")
-    @ResponseBody
-    public List<SitterRequest> requestSitterRequests(){
-        return sitterRequestService.getAll();
-    }
-
 }
