@@ -42,12 +42,12 @@ public class SitterRequestController {
         return HttpStatus.OK;
     }
 
-    @PostMapping("/new_request")
+    /*@PostMapping("/new_request")
     @ResponseBody
     public HttpStatus submitSitterRequestForm(RequestBody newRequest) {
         SitterRequest sitterRequest = sitterRequestService
                 .unpackHttpRequestToSitterRequest(newRequest);
         sitterRequestService.addSitterRequestDB(sitterRequest);
         return HttpStatus.OK;
-    }
+    }*/
 }
