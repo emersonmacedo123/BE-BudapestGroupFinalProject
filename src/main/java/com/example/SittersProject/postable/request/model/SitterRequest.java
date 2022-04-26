@@ -1,6 +1,8 @@
 package com.example.SittersProject.postable.request.model;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Table(name = "sitter_requests")
@@ -12,6 +14,30 @@ public class SitterRequest {
 
     @Column(name="requesterid")
     private Long requesterId;
+
+    @Column(name="district")
+    private int district;
+
+    @Column(name="address")
+    private String address;
+
+    @Column(name="type")
+    private String type;
+
+    @Column(name="date")
+    private Date date;
+
+    @Column(name="start_time")
+    private Time startTime;
+
+    @Column(name="num_hours")
+    private int numHours;
+
+    @Column(name="fee")
+    private Long fee;
+
+    @Column(name="title")
+    private String title;
 
     @Column(name="message")
     private String message;
