@@ -46,8 +46,8 @@ public class UserController {
         return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping(value = "/registration")
-    @ResponseBody //could be worth creating some DTO here?
+    @PostMapping("/registration")
+    @ResponseBody
     public HttpStatus submitRegistrationForm(@RequestBody User user){
         try {
             userService.registerNewUser(user);

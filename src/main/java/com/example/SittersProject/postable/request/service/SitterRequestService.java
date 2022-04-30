@@ -30,9 +30,4 @@ public class SitterRequestService {
     public void updateSitterRequestDB(Long id){
     }
 
-    /*public SitterRequest unpackHttpRequestToSitterRequest(RequestBody request) {
-        request.
-
-    }*/
-
 }

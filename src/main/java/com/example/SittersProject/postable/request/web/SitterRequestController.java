@@ -6,10 +6,8 @@ import com.example.SittersProject.postable.request.service.SitterRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class SitterRequestController {
         this.sitterRequestService = sitterRequestService;
     }
 
-    @GetMapping("/sitter_search")
+    @GetMapping("/sitter_search") //this will be our search method
     public List<SitterRequest> viewAllRequests() {
         return sitterRequestService.getAll();
     }
@@ -42,12 +40,10 @@ public class SitterRequestController {
         return HttpStatus.OK;
     }
 
-    /*@PostMapping("/new_request")
+    @PostMapping("/new_request")
     @ResponseBody
-    public HttpStatus submitSitterRequestForm(RequestBody newRequest) {
-        SitterRequest sitterRequest = sitterRequestService
-                .unpackHttpRequestToSitterRequest(newRequest);
+    public HttpStatus submitSitterRequestForm(@RequestBody SitterRequest sitterRequest) {
         sitterRequestService.addSitterRequestDB(sitterRequest);
         return HttpStatus.OK;
-    }*/
+    }
 }
