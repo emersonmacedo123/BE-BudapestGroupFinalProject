@@ -44,6 +44,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmailAddress(emailAddress) != null;
     }
 
+    public boolean usernameExists(String username) { return userRepository.findByUsername(username) != null; }
+
     public void registerNewUser(User user) throws EmailExistsException {
         if (emailExists(user.getEmailAddress())) {//should just look for null as a value, then only need one search
             throw new EmailExistsException("This email already exists.");
