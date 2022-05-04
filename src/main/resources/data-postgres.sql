@@ -1,13 +1,13 @@
-INSERT INTO users(firstName, lastName, emailaddress, username, password, averagerating, verified, role)
-VALUES ('Emerson', 'Macedo', 'emersonwantsanewjob@gmail.com', 'emersonM', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 3, false, 'USER');
-INSERT INTO users(firstName, lastName, emailaddress, username, password, averagerating, verified, role)
-VALUES ('Stevan', 'Samardzic', 'stevanwantsanewjob@gmail.com', 'stevans', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'ADMIN');
-INSERT INTO users(firstName, lastName, emailaddress, username, password, averagerating, verified, role)
-VALUES ('Holden', 'Hartsoe', 'holdenhasanewjob@gmail.com', 'holdenh', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'ADMIN');
-INSERT INTO users(firstName, lastName, emailaddress, username, password, averagerating, verified, role)
-VALUES ('Who', 'Doesnt', 'wantanewjob@gmail.com', 'whowho', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'USER');
-INSERT INTO users(firstName, lastName, emailaddress, username, password, averagerating, verified, role)
-VALUES ('I', 'should', 'bemorecreativewithnames@gmail.com', 'namename', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'USER');
+INSERT INTO users(firstName, lastName, emailaddress, address, phoneNumber, birthdate, username, password, averagerating, verified, role)
+VALUES ('Emerson', 'Macedo', 'emersonwantsanewjob@gmail.com', '7 Parliament Street','+2345559999',current_date,'emersonM','$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 3, false, 'USER');
+INSERT INTO users(firstName, lastName, emailaddress, address, phoneNumber, birthdate, username, password, averagerating, verified, role)
+VALUES ('Stevan', 'Samardzic', 'stevanwantsanewjob@gmail.com', '79 Andrassy Ut','+8657309',current_date,'stevans','$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'ADMIN');
+INSERT INTO users(firstName, lastName, emailaddress, address, phoneNumber, birthdate, username, password, averagerating, verified, role)
+VALUES ('Holden', 'Hartsoe', 'holdenhasanewjob@gmail.com', '79 Andrassy Ut','+36203125994',current_date, 'holdenh', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'ADMIN');
+INSERT INTO users(firstName, lastName, emailaddress, address, phoneNumber, birthdate, username, password, averagerating, verified, role)
+VALUES ('Who', 'Doesnt', 'wantanewjob@gmail.com','89 Hold Utca','+87346934432',current_date,  'whowho', '$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'USER');
+INSERT INTO users(firstName, lastName, emailaddress, address, phoneNumber, birthdate, username, password, averagerating, verified, role)
+VALUES ('I', 'should', 'bemorecreativewithnames@gmail.com', '10 Tipsy Street','+983498365',current_date, 'namename','$2a$12$6eAOna2/bxVnaB8krWDcSOCgRMMXdQVguxL.vT0iwWe6nFQvytRnK', 5, false, 'USER');
 
 
 INSERT INTO sitter_requests(requesterid, district, address, type, date, start_time, num_hours, fee, title, message)
