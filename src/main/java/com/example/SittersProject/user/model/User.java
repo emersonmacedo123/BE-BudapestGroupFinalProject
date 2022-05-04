@@ -29,7 +29,7 @@ public class User {
     @Column(name="birthdate")
     private Date birthDate;
 
-    @Column(name="username", unique = true)
+    @Column(name="userName", unique = true)
     private String username;
 
     @Column(name="password")
