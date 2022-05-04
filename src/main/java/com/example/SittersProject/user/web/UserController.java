@@ -56,6 +56,18 @@ public class UserController {
             return HttpStatus.CONFLICT;
         }
     }
+
+    @PostMapping("/is_email_available")
+    @ResponseBody
+    public boolean isEmailAvailable(@RequestBody String email){
+        return userService.emailExists(email);
+    }
+
+    @PostMapping("/is_username_available")
+    @ResponseBody
+    public boolean isUsernameAvailable(@RequestBody String username){
+        return userService.usernameExists(username);
+    }
 }
 
 
