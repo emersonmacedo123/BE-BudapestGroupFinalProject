@@ -1,6 +1,7 @@
 package com.example.SittersProject.user.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +19,15 @@ public class User {
 
     @Column(name="emailaddress", unique = true)
     private String emailAddress;
+
+    @Column(name="address")
+    private String address;
+
+    @Column(name="phoneNumber")
+    private String phoneNumber;
+
+    @Column(name="birthdate")
+    private Date birthDate;
 
     @Column(name="username", unique = true)
     private String username;
