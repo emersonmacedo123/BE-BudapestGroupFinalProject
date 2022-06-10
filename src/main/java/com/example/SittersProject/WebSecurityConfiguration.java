@@ -21,14 +21,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Bean
-    AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-        return provider;
-    }
-
-    @Bean
     PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
@@ -37,21 +29,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
         http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("/")
-                .permitAll()
-                .antMatchers("/sitter_search")
-                .hasAuthority("USER")
-                .antMatchers("/user/{id}")
-                .permitAll()
-                .antMatchers("/users")
-                .permitAll()
-                .antMatchers("/registration")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic();
     }
 
 }

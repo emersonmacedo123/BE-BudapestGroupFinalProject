@@ -23,13 +23,13 @@ public class User {
     @Column(name="address")
     private String address;
 
-    @Column(name="phoneNumber")
+    @Column(name="phonenumber")
     private String phoneNumber;
 
     @Column(name="birthdate")
     private Date birthDate;
 
-    @Column(name="userName", unique = true)
+    @Column(name="username", unique = true)
     private String username;
 
     @Column(name="password")
@@ -56,12 +56,40 @@ public class User {
         this.role = role;
     }
 
-    public void setUsername(String username) {
+    public void setUse(String username) {
         this.username = username;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
