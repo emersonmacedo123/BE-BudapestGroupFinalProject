@@ -5,6 +5,7 @@ import com.example.SittersProject.postable.request.model.SitterRequest;
 import com.example.SittersProject.postable.request.service.SitterRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "*")
 public class SitterRequestController {
     public final SitterRequestService sitterRequestService;
 
@@ -20,7 +22,8 @@ public class SitterRequestController {
         this.sitterRequestService = sitterRequestService;
     }
 
-    @GetMapping("/sitter_search") //this will be our search method
+    @GetMapping(value = "/sitter_search" , produces = MediaType.APPLICATION_JSON_VALUE) //this will be our search method
+    @ResponseBody
     public List<SitterRequest> viewAllRequests() {
         return sitterRequestService.getAll();
     }
